@@ -1,4 +1,6 @@
-const MainLayout = () => {
+import PropTypes from 'prop-types';
+
+const MainLayout = ({children}) => {
   return (
     <div className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -40,7 +42,7 @@ const MainLayout = () => {
           </div>
         </div>
         {/* Page content here */}
-        Content
+        {children}
       </div>
       <div className="drawer-side">
         <label
@@ -61,5 +63,9 @@ const MainLayout = () => {
     </div>
   );
 };
+
+MainLayout.propTypes = {
+    children: PropTypes.node,
+}
 
 export default MainLayout;
