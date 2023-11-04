@@ -1,0 +1,11 @@
+.active {
+    color: #2E0EAE;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.nav li {
+    list-style: none;
+    font-size: 18px;
+    font-weight: 600;
+}
