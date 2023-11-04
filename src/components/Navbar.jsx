@@ -26,7 +26,7 @@ const Navbar = () => {
       </div>
       <div className="flex-1">
         <Link to="/">
-          <h2 className="text-3xl font-bold text-secondary uppercase">
+          <h2 className="text-3xl md:text-4xl font-bold text-secondary uppercase">
             <span className="text-[#2E0EAE]">Edu</span>Care
           </h2>
         </Link>
