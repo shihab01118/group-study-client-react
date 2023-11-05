@@ -70,11 +70,11 @@ const Register = () => {
             />
           </div>
           <div className="">
-            <button className="btn bg-[#6440FA] rounded-lg capitalize md:text-lg font-semibold text-white hover:text-black hover:bg-secondary">
+            <button type="submit" className="btn bg-[#6440FA] rounded-lg capitalize md:text-lg font-semibold text-white hover:text-black hover:bg-secondary">
               Sign Up
             </button>
             <Link to="/login">
-              <p className="underline font-medium mt-5 text-gray-500 hover:text-[#6440FA] md:hidden">
+              <p className="font-medium mt-5 text-gray-500 hover:text-[#6440FA] hover:underline text-center md:hidden">
                 I am already a member
               </p>
             </Link>
@@ -84,7 +84,7 @@ const Register = () => {
       <div>
         <img src={signup_image} alt="sign up" />
         <Link to="/login">
-          <p className="underline font-medium text-center pt-3 text-gray-500 hover:text-[#6440FA] hidden md:block">
+          <p className="font-medium text-center pt-3 text-gray-500 hover:text-[#6440FA] hover:underline hidden md:block">
             I am already a member
           </p>
         </Link>
