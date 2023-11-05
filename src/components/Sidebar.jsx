@@ -17,6 +17,19 @@ const Sidebar = () => {
           <li>
             <NavLink to="/assignments">Assignments</NavLink>
           </li>
+          {user && (
+            <>
+              <li>
+                <NavLink to="/create_assignment">Create Assignment</NavLink>
+              </li>
+              <li>
+                <NavLink to="/my_assignments">My Assignments</NavLink>
+              </li>
+              <li>
+                <NavLink to="/submitted">Submitted</NavLink>
+              </li>
+            </>
+          )}
           {
             !user && <>
             <li>

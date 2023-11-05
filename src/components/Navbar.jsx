@@ -45,48 +45,74 @@ const Navbar = () => {
           <li>
             <NavLink to="/assignments">Assignments</NavLink>
           </li>
-          {
-            !user && <>
-            <li>
-            <NavLink to="/register">Register</NavLink>
-          </li>
-          <li>
-            <NavLink to="/login">Login</NavLink>
-          </li>
+          {user && (
+            <>
+              <li>
+                <NavLink to="/create_assignment">Create Assignment</NavLink>
+              </li>
+              <li>
+                <NavLink to="/my_assignments">My Assignments</NavLink>
+              </li>
+              <li>
+                <NavLink to="/submitted">Submitted</NavLink>
+              </li>
             </>
-          }
-          {user && <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
-          <label tabIndex={0} className="avatar mx-2">
-          <div className="w-8 rounded-full">
-            {user && <img src={user.photoURL} />}
-          </div>
-        </label>
-          <ul
-            tabIndex={0}
-            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <p className="text-center mb-2">{user.displayName}</p>
-              <button onClick={handleSignOut} className="btn btn-ghost btn-block rounded-lg btn-sm hover:bg-[#6440FA] hover:text-white">Sign Out</button>
-          </ul>
-        </div>}
+          )}
+          {!user && (
+            <>
+              <li>
+                <NavLink to="/register">Register</NavLink>
+              </li>
+              <li>
+                <NavLink to="/login">Login</NavLink>
+              </li>
+            </>
+          )}
+          {user && (
+            <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
+              <label tabIndex={0} className="avatar mx-2">
+                <div className="w-8 rounded-full">
+                  {user && <img src={user.photoURL} />}
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <p className="text-center mb-2">{user.displayName}</p>
+                <button
+                  onClick={handleSignOut}
+                  className="btn btn-ghost btn-block rounded-lg btn-sm hover:bg-[#6440FA] hover:text-white"
+                >
+                  Sign Out
+                </button>
+              </ul>
+            </div>
+          )}
         </div>
-        
       </div>
       <div className="lg:hidden">
-      {user && <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
-          <label tabIndex={0} className="avatar mx-2">
-          <div className="w-8 rounded-full">
-            {user && <img src={user.photoURL} />}
+        {user && (
+          <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
+            <label tabIndex={0} className="avatar mx-2">
+              <div className="w-8 rounded-full">
+                {user && <img src={user.photoURL} />}
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <p className="text-center mb-2">{user.displayName}</p>
+              <button
+                onClick={handleSignOut}
+                className="btn btn-ghost btn-block rounded-lg btn-sm hover:bg-[#6440FA] hover:text-white"
+              >
+                Sign Out
+              </button>
+            </ul>
           </div>
-        </label>
-          <ul
-            tabIndex={0}
-            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <p className="text-center mb-2">{user.displayName}</p>
-              <button onClick={handleSignOut} className="btn btn-ghost btn-block rounded-lg btn-sm hover:bg-[#6440FA] hover:text-white">Sign Out</button>
-          </ul>
-        </div>}
+        )}
       </div>
     </div>
   );

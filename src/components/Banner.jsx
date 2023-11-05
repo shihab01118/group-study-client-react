@@ -1,11 +1,18 @@
 import { Link } from "react-router-dom";
 import banner from "../assets/images/banner.jpg";
 import { FaArrowTrendUp } from "react-icons/fa6";
+import Aos from 'aos';
+import "aos/dist/aos.css"
+import { useEffect } from "react";
 
 const Banner = () => {
+  useEffect(() => {
+    Aos.init({duration: 1500})
+  }, [])
+
   return (
     <div className="relative">
-      <div>
+      <div data-aos="fade-up">
         <img
           src={banner}
           alt="banner"
@@ -13,7 +20,7 @@ const Banner = () => {
         />
         <div className="bg-gray-700 inset-0 absolute opacity-70"></div>
         <div className="w-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
-          <div className="mx-8 md:max-w-xl md:mx-auto text-center">
+          <div data-aos="fade-down" className="mx-8 md:max-w-xl md:mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-[#1A064E]">
               Learn Together, Grow Faster
             </h2>
