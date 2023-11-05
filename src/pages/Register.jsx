@@ -3,9 +3,12 @@ import { FaLock, FaUser } from "react-icons/fa6";
 import { TbMailFilled } from "react-icons/tb";
 import { BiSolidUserAccount } from "react-icons/bi";
 import signup_image from "../assets/images/signup.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const {createUser, logout} = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,6 +23,15 @@ const Register = () => {
       imgURL,
     };
     console.log(user);
+    createUser(email, password)
+    .then(result => {
+      console.log(result.user);
+      logout();
+      navigate("/login")
+    })
+    .catch(error => {
+      console.error(error);
+    })
   };
 
   return (
@@ -34,7 +46,7 @@ const Register = () => {
             <input
               type="text"
               placeholder="Your Name"
-              className="outline-none text-sm md:text-base"
+              className="outline-none text-sm md:text-base w-full"
               onBlur={(e) => setName(e.target.value)}
               required
             />
@@ -44,7 +56,7 @@ const Register = () => {
             <input
               type="email"
               placeholder="Your Email"
-              className="outline-none text-sm md:text-base"
+              className="outline-none text-sm md:text-base w-full"
               onBlur={(e) => setEmail(e.target.value)}
               required
             />
@@ -54,7 +66,7 @@ const Register = () => {
             <input
               type="password"
               placeholder="Your Password"
-              className="outline-none text-sm md:text-base"
+              className="outline-none text-sm md:text-base w-full"
               onBlur={(e) => setPassword(e.target.value)}
               required
             />
@@ -64,7 +76,7 @@ const Register = () => {
             <input
               type="url"
               placeholder="Your Image URL"
-              className="outline-none text-sm md:text-base"
+              className="outline-none text-sm md:text-base w-full"
               onBlur={(e) => setImgURL(e.target.value)}
               required
             />
