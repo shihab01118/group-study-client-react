@@ -4,19 +4,33 @@ import { FaLock } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { TbMailFilled } from "react-icons/tb";
 import login_image from "../assets/images/signin.jpg";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const {loginUser} = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    const user = {
-      email,
-      password,
-    };
-    console.log(user);
+    
+    // sign in user
+    loginUser(email, password)
+    .then((result) => {
+      console.log(result.user);
+      toast.success("Login Successful!");
+
+      // navigate after login
+      navigate(location?.state ? location.state : "/");
+    })
+    .catch(error => {
+        console.error(error);
+        toast.error("Invalid email or password");
+    })
   };
   return (
     <div className="max-w-4xl mx-8 md:mx-16 lg:mx-auto bg-base-100 rounded-xl shadow-xl my-16 md:my-20 lg:my-24 p-10 md:p-16 flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-20">

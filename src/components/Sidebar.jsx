@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 
 const Sidebar = () => {
+  const { user } = useAuth();
+
     return (
         <div className="drawer-side">
         <label
@@ -14,12 +17,16 @@ const Sidebar = () => {
           <li>
             <NavLink to="/assignments">Assignments</NavLink>
           </li>
-          <li>
+          {
+            !user && <>
+            <li>
             <NavLink to="/register">Register</NavLink>
           </li>
           <li>
             <NavLink to="/login">Login</NavLink>
           </li>
+            </>
+          }
         </ul>
       </div>
     );
