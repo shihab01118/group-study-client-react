@@ -10,7 +10,7 @@ const PrivateRoute = ({ children }) => {
     if (loading) {
         return (
           <div className="h-screen flex justify-center items-center">
-            <Lottie animationData={loading_animation}></Lottie>
+            <Lottie className="h-40" animationData={loading_animation}></Lottie>
           </div>
         );
       }
