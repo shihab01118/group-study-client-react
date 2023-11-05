@@ -5,10 +5,11 @@ import { BiSolidUserAccount } from "react-icons/bi";
 import signup_image from "../assets/images/signup.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
-  const {createUser, logout} = useAuth();
+  const {createUser, updateUserProfile, logout} = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,16 +17,24 @@ const Register = () => {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    const user = {
-      name,
-      email,
-      password,
-      imgURL,
-    };
-    console.log(user);
+    
+    // password validation
+    // if (
+    //   !/^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\-]).{6,}$/.test(password)
+    // ) {
+    //   toast.error(
+    //     "Password must contain 6 characters, one capital letter and a special character."
+    //   );
+    //   return;
+    // }
+
+    // create user
     createUser(email, password)
     .then(result => {
       console.log(result.user);
+      toast.success("Registration Successful!");
+
+      updateUserProfile(name, imgURL)
       logout();
       navigate("/login")
     })
