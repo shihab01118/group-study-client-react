@@ -3,6 +3,8 @@ import assignment_cover from "../assets/images/add_assignment.jpg";
 import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import useAuth from "../hooks/useAuth";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const CreateAssignment = () => {
   const [title, setTitle] = useState("");
@@ -17,9 +19,18 @@ const CreateAssignment = () => {
 
   const handleCreateAssignment = (e) => {
     e.preventDefault();
+    const form = e.target;
 
     const assignment = {title, description, mark, imgUrl, level, dueDate, email }
-    console.log(assignment);
+
+    axios.post("http://localhost:5000/api/v1/user/assignments", assignment)
+    .then(res => {
+        const data = res.data;
+        if(data.insertedId) {
+            toast.success("Assignment Created Successfully!")
+            form.reset()
+        }
+    })
   }
 
   return (
