@@ -1,0 +1,51 @@
+[
+    {
+      "id": 1,
+      "image": "https://img.freepik.com/free-photo/using-sitting-teacher-childish-jacket_1134-916.jpg",
+      "title": "Mathematics Study Group",
+      "description": "Join our math study group to solve complex problems and ace your exams!",
+      "featured_content": "We provide comprehensive math notes and weekly problem-solving sessions.",
+      "ratings": 4.8
+    },
+    {
+      "id": 2,
+      "image": "https://img.freepik.com/free-photo/medium-shot-people-reading-together_23-2150062141.jpg",
+      "title": "Literature Lovers Club",
+      "description": "Explore the world of classic and contemporary literature with fellow enthusiasts.",
+      "featured_content": "Monthly book discussions and author spotlights.",
+      "ratings": 4.5
+    },
+    {
+      "id": 3,
+      "image": "https://img.freepik.com/premium-photo/several-young-contemporary-software-developers-sitting-row-by-desks-during-presentation-new-programming-language_236854-37234.jpg",
+      "title": "Programming Pros",
+      "description": "Enhance your coding skills with our programming study group.",
+      "featured_content": "Code reviews, coding challenges, and project collaborations.",
+      "ratings": 4.9
+    },
+    {
+      "id": 4,
+      "image": "https://img.freepik.com/free-photo/boys-with-bags-girls-look-touristic-map-standing-somewhere-old-city_8353-1632.jpg",
+      "title": "History Buffs",
+      "description": "Dive into fascinating historical events and unravel the past with us.",
+      "featured_content": "Weekly history quizzes and virtual museum tours.",
+      "ratings": 4.6
+    },
+    {
+      "id": 5,
+      "image": "https://img.freepik.com/free-photo/middle-age-woman-with-her-assistant-working-research-lab-microbiology-test-tubes_482257-34452.jpg",
+      "title": "Chemistry Enthusiasts",
+      "description": "Join our chemistry study group to explore the wonders of chemical reactions and bonding.",
+      "featured_content": "Interactive lab experiments and discussions on chemical principles.",
+      "ratings": 4.7
+    },
+    {
+      "id": 6,
+      "image": "https://img.freepik.com/premium-photo/attentive-creative-business-people-meeting_13339-146052.jpg",
+      "title": "Language Learning Club",
+      "description": "Immerse yourself in foreign languages and diverse cultures with our language study group.",
+      "featured_content": "Conversational practice, language games, and cultural exchange events.",
+      "ratings": 4.4
+    }
+  ]
+  
