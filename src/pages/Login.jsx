@@ -9,7 +9,7 @@ import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const {loginUser} = useAuth();
+  const {loginUser, googleSignIn} = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [email, setEmail] = useState("");
@@ -32,6 +32,21 @@ const Login = () => {
         toast.error("Invalid email or password");
     })
   };
+  
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+    .then(result => {
+        console.log(result.user);
+        toast.success("Login Successful!");
+
+        // navigate after login
+      navigate(location?.state ? location.state : "/");
+    })
+    .catch(error => {
+        console.error(error);
+    })
+  }
+
   return (
     <div className="max-w-4xl mx-8 md:mx-16 lg:mx-auto bg-base-100 rounded-xl shadow-xl my-16 md:my-20 lg:my-24 p-10 md:p-16 flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-20">
       <div>
@@ -90,7 +105,7 @@ const Login = () => {
         <div className="flex gap-5 mt-6 md:mt-10 items-center w-fit mx-auto md:mx-0">
           <p>Or login with</p>
           <div className="flex gap-3">
-            <button className="text-3xl">
+            <button onClick={handleGoogleSignIn} className="text-3xl">
               <FcGoogle />
             </button>
             <button className="btn text-white bg-[#3B5998] rounded-lg btn-square btn-sm">
