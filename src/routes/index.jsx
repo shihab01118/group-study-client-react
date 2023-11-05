@@ -23,10 +23,15 @@ const routes = createBrowserRouter([
       {
         path: "assignments",
         element: <Assignments />,
+        // loader: () => fetch("http://localhost:5000/api/v1/user/assignments")
       },
       {
         path: "create_assignment",
-        element: <PrivateRoute><CreateAssignment /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <CreateAssignment />
+          </PrivateRoute>
+        ),
       },
       {
         path: "my_assignments",
