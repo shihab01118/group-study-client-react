@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 
 const AssignmentCard = ({ assignment, refetch }) => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const { _id, title, mark, imgUrl, level, email } = assignment || {};
 
   useEffect(() => {
@@ -50,6 +51,16 @@ const AssignmentCard = ({ assignment, refetch }) => {
     }
   };
 
+  const handleUpdate = () => {
+    const userEmail = user.email;
+    if(userEmail === email) {
+      navigate(`/upadate_assignment/${_id}`)
+    }
+    else{
+      toast.error("You can not update this assignment")
+    }
+  }
+
   return (
     <div
       data-aos="fade-up"
@@ -71,11 +82,11 @@ const AssignmentCard = ({ assignment, refetch }) => {
                 View
               </button>
             </Link>
-            <Link to={`/upadate_assignment/${_id}`}>
-              <button className="btn bg-primary rounded-lg capitalize font-semibold text-white border-none hover:text-black hover:bg-secondary btn-sm">
+            {/* <Link to={`/upadate_assignment/${_id}`}> */}
+              <button onClick={handleUpdate} className="btn bg-primary rounded-lg capitalize font-semibold text-white border-none hover:text-black hover:bg-secondary btn-sm">
                 Update
               </button>
-            </Link>
+            {/* </Link> */}
             <button
               onClick={handleDelete}
               className="absolute top-3 right-3 btn btn-sm btn-circle border-0 hover:bg-red-500 hover:text-white"

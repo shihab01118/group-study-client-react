@@ -1,26 +1,46 @@
 import { useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import update_assignmet from "../assets/images/update_assignment.jpg";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const UpdateAssignment = () => {
   const assignment = useLoaderData();
-  const { title, description, mark, imgUrl, level, dueDate } =
-    assignment || {};
+  const navigate = useNavigate();
 
-  const [newTitle, setNewTitle] = useState("");
-  const [newDescription, setNewDescription] = useState("");
-  const [newMark, setNewMark] = useState("");
-  const [newImgUrl, setNewImgUrl] = useState("");
-  const [newLevel, setNewLevel] = useState(level);
-  const [newDueDate, setNewDueDate] = useState(new Date(dueDate));
+  const [title, setTitle] = useState(assignment?.title);
+  const [description, setDescription] = useState(assignment?.description);
+  const [mark, setMark] = useState(assignment?.mark);
+  const [imgUrl, setImgUrl] = useState(assignment?.imgUrl);
+  const [level, setLevel] = useState(assignment?.level);
+  const [dueDate, setDueDate] = useState(new Date(assignment?.dueDate));
 
-  const handleUpdateAssignment = e => {
+  const handleUpdateAssignment = (e) => {
     e.preventDefault();
 
-    const updatedAssignment = {newTitle, newDescription, newMark, newImgUrl, newLevel, newDueDate};
-    console.log(updatedAssignment);
-  }
+    const updatedAssignment = {
+      title,
+      description,
+      mark,
+      imgUrl,
+      level,
+      dueDate,
+    };
+
+    axios
+      .put(
+        `http://localhost:5000/api/v1/user/assignments/${assignment?._id}`,
+        updatedAssignment
+      )
+      .then((res) => {
+        const data = res.data;
+        if (data.modifiedCount > 0) {
+          toast.success("Assignment Updated!");
+          navigate("/assignments");
+        }
+      });
+  };
 
   return (
     <div className="max-w-4xl mx-8 md:mx-16 lg:mx-auto bg-base-100 rounded-xl shadow-xl my-16 md:my-20 lg:my-24 p-10 md:p-16 flex items-center flex-col-reverse md:flex-row md:gap-8 lg:gap-20">
@@ -33,9 +53,9 @@ const UpdateAssignment = () => {
             <input
               type="text"
               placeholder="Title"
-              defaultValue={title}
+              defaultValue={assignment?.title}
               className="outline-none text-sm md:text-base w-full"
-              onBlur={(e) => setNewTitle(e.target.value)}
+              onBlur={(e) => setTitle(e.target.value)}
               required
             />
           </div>
@@ -43,9 +63,9 @@ const UpdateAssignment = () => {
             <input
               type="text"
               placeholder="Description"
-              defaultValue={description}
+              defaultValue={assignment?.description}
               className="outline-none text-sm md:text-base w-full"
-              onBlur={(e) => setNewDescription(e.target.value)}
+              onBlur={(e) => setDescription(e.target.value)}
               required
             />
           </div>
@@ -53,9 +73,9 @@ const UpdateAssignment = () => {
             <input
               type="text"
               placeholder="Total Mark"
-              defaultValue={mark}
+              defaultValue={assignment?.mark}
               className="outline-none text-sm md:text-base w-full"
-              onBlur={(e) => setNewMark(e.target.value)}
+              onBlur={(e) => setMark(e.target.value)}
               required
             />
           </div>
@@ -63,17 +83,17 @@ const UpdateAssignment = () => {
             <input
               type="url"
               placeholder="Thumbnail URL"
-              defaultValue={imgUrl}
+              defaultValue={assignment?.imgUrl}
               className="outline-none text-sm md:text-base w-full"
-              onBlur={(e) => setNewImgUrl(e.target.value)}
+              onBlur={(e) => setImgUrl(e.target.value)}
               required
             />
           </div>
           <div className="flex gap-2">
             <p className="font-medium pt-3">Difficulty Level:</p>
             <select
-              value={newLevel}
-              onChange={(e) => setNewLevel(e.target.value)}
+              value={level}
+              onChange={(e) => setLevel(e.target.value)}
               className="select w-full select-bordered mb-5 border-gray-400 focus:outline-none flex-1"
             >
               <option value="Easy">Easy</option>
@@ -85,8 +105,8 @@ const UpdateAssignment = () => {
             <span className="font-medium">Due Date: </span>
             <ReactDatePicker
               className="focus:outline-none"
-              selected={newDueDate}
-              onChange={(date) => setNewDueDate(date)}
+              selected={dueDate}
+              onChange={(date) => setDueDate(date)}
               dateFormat="dd/MM/yyyy"
               minDate={new Date()}
             />
