@@ -18,8 +18,11 @@ const AssignmentCard = ({ assignment, refetch }) => {
   }, []);
 
   const handleDelete = () => {
-    const userEmail = user.email;
-    if (email === userEmail) {
+    const userEmail = user?.email;
+    if (!userEmail) {
+      navigate("/login")
+    }
+    else if (email === userEmail) {
       Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -52,8 +55,11 @@ const AssignmentCard = ({ assignment, refetch }) => {
   };
 
   const handleUpdate = () => {
-    const userEmail = user.email;
-    if(userEmail === email) {
+    const userEmail = user?.email;
+    if (!userEmail) {
+      navigate("/login")
+    }
+    else if(userEmail === email) {
       navigate(`/upadate_assignment/${_id}`)
     }
     else{
