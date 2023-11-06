@@ -1,21 +1,13 @@
 import { Box, Modal } from "@mui/material";
+import axios from "axios";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const SubmittedCard = ({ assignment }) => {
+const SubmittedCard = ({ assignment, refetch }) => {
   const [open, setOpen] = useState(false);
 
-  const {
-    _id,
-    pdfUrl,
-    note,
-    status,
-    title,
-    imgUrl,
-    mark,
-    examineeName,
-    examineeEmail,
-  } = assignment || {};
+  const { _id, pdfUrl, note, title, imgUrl, mark, examineeName } =
+    assignment || {};
 
   const style = {
     position: "absolute",
@@ -25,11 +17,24 @@ const SubmittedCard = ({ assignment }) => {
     maxWidth: 500,
     bgcolor: "background.paper",
     boxShadow: 24,
-    // p: 4,
   };
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleConfirm = () => {
+    axios
+      .patch(`http://localhost:5000/api/v1/user/submitted_assignments/${_id}`, {
+        status: "completed",
+      })
+      .then((res) => {
+        const data = res.data;
+        if (data.modifiedCount > 0) {
+          handleClose();
+          refetch();
+        }
+      });
+  };
 
   return (
     <div className="card card-side bg-base-100 shadow-xl">
@@ -66,20 +71,19 @@ const SubmittedCard = ({ assignment }) => {
                   </a>
                 </p>
                 <p>
-                  <span className="font-medium">Description:</span> {note}
+                  <span className="font-medium">Note:</span> {note}
                 </p>
               </div>
-              <hr className="border-gray-400 mt-4" />
-              <form>
-                <div className="flex items-center">
-                  <label htmlFor="remark" className="label font-medium">
+              <hr className="border-gray-400 my-4" />
+              <form onSubmit={handleConfirm}>
+                <div className="flex items-center mb-3 gap-2">
+                  <label htmlFor="remark" className="font-medium">
                     Remark:
                   </label>
                   <input
                     id="remark"
                     type="text"
                     className="outline-none text-sm md:text-base border-b h-5 border-gray-400"
-                    //   onBlur={e => setMark(e.target.value)}
                     required
                   />
                 </div>
@@ -89,7 +93,6 @@ const SubmittedCard = ({ assignment }) => {
                   </label>
                   <textarea
                     id="feedback"
-                    // onBlur={(e) => setNote(e.target.value)}
                     className="textarea mt-2 px-2 py-0 border-gray-400 rounded-lg w-full h-20 focus:outline-none"
                     required
                   ></textarea>
@@ -113,6 +116,7 @@ const SubmittedCard = ({ assignment }) => {
 
 SubmittedCard.propTypes = {
   assignment: PropTypes.object,
+  refetch: PropTypes.func,
 };
 
 export default SubmittedCard;

@@ -7,7 +7,7 @@ const Submitted = () => {
   const {
     data: submittedAssignmnets,
     isLoading,
-    // refetch,
+    refetch,
   } = useQuery({
     queryKey: ["submittedAssignmnets"],
     queryFn: async () => {
@@ -18,9 +18,16 @@ const Submitted = () => {
     },
   });
 
-
   if (isLoading === true) {
     return <Loading />;
+  }
+
+  if (submittedAssignmnets.length < 1) {
+    return (
+      <div className="h-[calc(100vh-88px)] flex justify-center items-center">
+        <p className="text-[#6440FA] text-lg font-medium">No Submission Yet</p>
+      </div>
+    );
   }
 
   return (
@@ -29,9 +36,13 @@ const Submitted = () => {
         Submitted Assignmmets
       </h2>
       <div className="grid gap-6 lg:grid-cols-2 mt-10">
-        {
-            submittedAssignmnets?.map(assignment => <SubmittedCard key={assignment?._id} assignment={assignment} />)
-        }
+        {submittedAssignmnets?.map((assignment) => (
+          <SubmittedCard
+            key={assignment?._id}
+            assignment={assignment}
+            refetch={refetch}
+          />
+        ))}
       </div>
     </div>
   );

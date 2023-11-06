@@ -115,7 +115,7 @@ const AssignmentDetails = () => {
                   <textarea
                     id="note"
                     onBlur={(e) => setNote(e.target.value)}
-                    className="textarea p-2 border-gray-400 w-full focus:outline-none"
+                    className="textarea mt-2 px-2 py-0 border-gray-400 rounded-lg w-full h-20 focus:outline-none"
                     required
                   ></textarea>
                 </div>
