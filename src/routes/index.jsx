@@ -41,7 +41,8 @@ const routes = createBrowserRouter([
             <AssignmentDetails />
           </PrivateRoute>
         ),
-        loader: ({params}) => fetch(`http://localhost:5000/api/v1/user/assignments/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/api/v1/user/assignments/${params.id}`),
       },
       {
         path: "upadate_assignment/:id",
@@ -50,7 +51,8 @@ const routes = createBrowserRouter([
             <UpdateAssignment />
           </PrivateRoute>
         ),
-        loader: ({params}) => fetch(`http://localhost:5000/api/v1/user/assignments/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/api/v1/user/assignments/${params.id}`),
       },
       {
         path: "my_assignments",
@@ -58,7 +60,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "submitted",
-        element: <Submitted />,
+        element: (
+          <PrivateRoute>
+            <Submitted />
+          </PrivateRoute>
+        ),
       },
     ],
   },

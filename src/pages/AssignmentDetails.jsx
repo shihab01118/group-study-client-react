@@ -42,6 +42,7 @@ const AssignmentDetails = () => {
       note,
       status,
       title, 
+      imgUrl,
       mark, 
       examineeName,
       examineeEmail
