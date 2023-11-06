@@ -13,7 +13,7 @@ const Assignments = () => {
     isLoading,
     // refetch,
   } = useQuery({
-    queryKey: ["assignments"] ,
+    queryKey: ["assignments"],
     queryFn: async () => {
       const data = await fetch(
         `http://localhost:5000/api/v1/user/assignments?difficulty=${difficultyLevel}`
