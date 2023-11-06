@@ -10,6 +10,7 @@ import MyAssignments from "../pages/MyAssignments";
 import Submitted from "../pages/Submitted";
 import PrivateRoute from "./PrivateRoute";
 import AssignmentDetails from "../pages/AssignmentDetails";
+import UpdateAssignment from "../pages/UpdateAssignment";
 
 const routes = createBrowserRouter([
   {
@@ -38,6 +39,15 @@ const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AssignmentDetails />
+          </PrivateRoute>
+        ),
+        loader: ({params}) => fetch(`http://localhost:5000/api/v1/user/assignments/${params.id}`)
+      },
+      {
+        path: "upadate_assignment/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateAssignment />
           </PrivateRoute>
         ),
         loader: ({params}) => fetch(`http://localhost:5000/api/v1/user/assignments/${params.id}`)
