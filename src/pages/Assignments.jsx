@@ -6,14 +6,13 @@ import { useQuery } from "@tanstack/react-query";
 
 const Assignments = () => {
   const [difficultyLevel, setDifficultyLevel] = useState("All");
-  console.log(difficultyLevel);
 
   const {
     data: assignments,
     isLoading,
     // refetch,
   } = useQuery({
-    queryKey: ["assignments"],
+    queryKey: [difficultyLevel],
     queryFn: async () => {
       const data = await fetch(
         `http://localhost:5000/api/v1/user/assignments?difficulty=${difficultyLevel}`

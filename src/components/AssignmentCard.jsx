@@ -37,7 +37,7 @@ const AssignmentCard = ({ assignment }) => {
                 Update
               </button>
             </Link>
-            <button className="absolute top-3 right-3 btn btn-sm btn-circle border-0 hover:bg-red-500 hover:text-white">
+            {/* <button className="absolute top-3 right-3 btn btn-sm btn-circle border-0 hover:bg-red-500 hover:text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -52,7 +52,7 @@ const AssignmentCard = ({ assignment }) => {
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
