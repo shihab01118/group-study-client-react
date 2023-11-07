@@ -6,7 +6,7 @@ const Features = () => {
   const [features, setFeatures] = useState([]);
 
   useEffect(() => {
-    fetch("/featured.json")
+    fetch("https://group-study-server.vercel.app/api/v1/user/featured")
       .then((res) => res.json())
       .then((data) => setFeatures(data));
   }, []);
@@ -22,9 +22,9 @@ const Features = () => {
         </h2>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {
-            features.map(feature => <FeaturedCard key={feature.id} feature={feature}></FeaturedCard>)
-        }
+        {features.map((feature) => (
+          <FeaturedCard key={feature.id} feature={feature}></FeaturedCard>
+        ))}
       </div>
     </div>
   );

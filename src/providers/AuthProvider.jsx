@@ -57,19 +57,30 @@ const AuthProvider = ({ children }) => {
       // if user exist then issue a token
       if (currentUser) {
         axios
-          .post("http://localhost:5000/api/v1/auth/jwt", loggedUser, {
-            withCredentials: true,
-          })
+          .post(
+            "https://group-study-server.vercel.app/api/v1/auth/jwt",
+            loggedUser,
+            {
+              withCredentials: true,
+            }
+          )
           .then((res) => {
             const data = res.data;
             console.log("token response", data);
           });
       } else {
-        axios.post("http://localhost:5000/api/v1/auth/logout", loggedUser, {withCredentials: true})
-        .then(res => {
-          const data = res.data;
-          console.log(data);
-        })
+        axios
+          .post(
+            "https://group-study-server.vercel.app/api/v1/auth/logout",
+            loggedUser,
+            {
+              withCredentials: true,
+            }
+          )
+          .then((res) => {
+            const data = res.data;
+            console.log(data);
+          });
       }
     });
     return () => {

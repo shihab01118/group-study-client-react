@@ -30,7 +30,7 @@ const UpdateAssignment = () => {
 
     axios
       .put(
-        `http://localhost:5000/api/v1/user/assignments/${assignment?._id}`,
+        `https://group-study-server.vercel.app/api/v1/user/assignments/${assignment?._id}`,
         updatedAssignment
       )
       .then((res) => {

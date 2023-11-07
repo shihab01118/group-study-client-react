@@ -25,7 +25,10 @@ const routes = createBrowserRouter([
       {
         path: "assignments",
         element: <Assignments />,
-        loader: () => fetch("http://localhost:5000/api/v1/user/assignmentsCount")
+        loader: () =>
+          fetch(
+            "https://group-study-server.vercel.app/api/v1/user/assignmentsCount"
+          ),
       },
       {
         path: "create_assignment",
@@ -43,7 +46,9 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/api/v1/user/assignments/${params.id}`),
+          fetch(
+            `https://group-study-server.vercel.app/api/v1/user/assignments/${params.id}`
+          ),
       },
       {
         path: "upadate_assignment/:id",
@@ -53,7 +58,9 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/api/v1/user/assignments/${params.id}`),
+          fetch(
+            `https://group-study-server.vercel.app/api/v1/user/assignments/${params.id}`
+          ),
       },
       {
         path: "my_assignments",

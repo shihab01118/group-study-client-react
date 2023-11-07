@@ -40,16 +40,16 @@ const AssignmentDetails = () => {
       pdfUrl,
       note,
       status,
-      title, 
+      title,
       imgUrl,
-      mark, 
+      mark,
       examineeName,
-      examineeEmail
+      examineeEmail,
     };
 
     axios
       .post(
-        "http://localhost:5000/api/v1/user/submitted_assignments",
+        "https://group-study-server.vercel.app/api/v1/user/submitted_assignments",
         submittedAssignment
       )
       .then((res) => {
@@ -128,22 +128,25 @@ const AssignmentDetails = () => {
                   </button>
                 </div>
               </form>
-              <button onClick={handleClose} className="absolute top-3 right-3 btn btn-sm btn-circle border-0 hover:bg-red-500 hover:text-white">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+              <button
+                onClick={handleClose}
+                className="absolute top-3 right-3 btn btn-sm btn-circle border-0 hover:bg-red-500 hover:text-white"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
             </Box>
           </Modal>
         </div>

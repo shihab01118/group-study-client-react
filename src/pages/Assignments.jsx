@@ -25,7 +25,9 @@ const Assignments = () => {
     queryKey: [difficultyLevel, currentPage, itemsPerPage],
     queryFn: async () => {
       const data = await fetch(
-        `http://localhost:5000/api/v1/user/assignments?difficulty=${difficultyLevel}&page=${currentPage - 1}&size=${itemsPerPage}`,
+        `https://group-study-server.vercel.app/api/v1/user/assignments?difficulty=${difficultyLevel}&page=${
+          currentPage - 1
+        }&size=${itemsPerPage}`,
         {
           credentials: "include",
         }

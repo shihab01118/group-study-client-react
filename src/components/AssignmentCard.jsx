@@ -20,9 +20,8 @@ const AssignmentCard = ({ assignment, refetch }) => {
   const handleDelete = () => {
     const userEmail = user?.email;
     if (!userEmail) {
-      navigate("/login")
-    }
-    else if (email === userEmail) {
+      navigate("/login");
+    } else if (email === userEmail) {
       Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -34,7 +33,9 @@ const AssignmentCard = ({ assignment, refetch }) => {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete(`http://localhost:5000/api/v1/user/assignments/${_id}`)
+            .delete(
+              `https://group-study-server.vercel.app/api/v1/user/assignments/${_id}`
+            )
             .then((res) => {
               const data = res.data;
               if (data.deletedCount > 0) {
@@ -43,29 +44,26 @@ const AssignmentCard = ({ assignment, refetch }) => {
                   text: "Assignment has been deleted.",
                   icon: "success",
                 });
-                refetch()
+                refetch();
               }
             });
         }
       });
-    }
-    else {
-      toast.error("You can not delete this assignment")
+    } else {
+      toast.error("You can not delete this assignment");
     }
   };
 
   const handleUpdate = () => {
     const userEmail = user?.email;
     if (!userEmail) {
-      navigate("/login")
+      navigate("/login");
+    } else if (userEmail === email) {
+      navigate(`/upadate_assignment/${_id}`);
+    } else {
+      toast.error("You can not update this assignment");
     }
-    else if(userEmail === email) {
-      navigate(`/upadate_assignment/${_id}`)
-    }
-    else{
-      toast.error("You can not update this assignment")
-    }
-  }
+  };
 
   return (
     <div
@@ -89,9 +87,12 @@ const AssignmentCard = ({ assignment, refetch }) => {
               </button>
             </Link>
             {/* <Link to={`/upadate_assignment/${_id}`}> */}
-              <button onClick={handleUpdate} className="btn bg-primary rounded-lg capitalize font-semibold text-white border-none hover:text-black hover:bg-secondary btn-sm">
-                Update
-              </button>
+            <button
+              onClick={handleUpdate}
+              className="btn bg-primary rounded-lg capitalize font-semibold text-white border-none hover:text-black hover:bg-secondary btn-sm"
+            >
+              Update
+            </button>
             {/* </Link> */}
             <button
               onClick={handleDelete}

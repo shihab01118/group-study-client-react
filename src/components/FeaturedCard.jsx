@@ -15,7 +15,7 @@ const FeaturedCard = ({ feature }) => {
       <figure>
         <img
           src={image}
-          alt="Shoes"
+          alt={title}
         />
       </figure>
       <div data-aos="fade-down" className="card-body rounded-xl">

@@ -14,24 +14,36 @@ const CreateAssignment = () => {
   const [level, setLevel] = useState("Easy");
   const [dueDate, setDueDate] = useState(new Date());
 
-  const {user} = useAuth();
+  const { user } = useAuth();
   const email = user.email;
 
   const handleCreateAssignment = (e) => {
     e.preventDefault();
     const form = e.target;
 
-    const assignment = {title, description, mark, imgUrl, level, dueDate, email }
+    const assignment = {
+      title,
+      description,
+      mark,
+      imgUrl,
+      level,
+      dueDate,
+      email,
+    };
 
-    axios.post("http://localhost:5000/api/v1/user/assignments", assignment)
-    .then(res => {
+    axios
+      .post(
+        "https://group-study-server.vercel.app/api/v1/user/assignments",
+        assignment
+      )
+      .then((res) => {
         const data = res.data;
-        if(data.insertedId) {
-            toast.success("Assignment Created Successfully!")
-            form.reset()
+        if (data.insertedId) {
+          toast.success("Assignment Created Successfully!");
+          form.reset();
         }
-    })
-  }
+      });
+  };
 
   return (
     <div className="max-w-4xl mx-8 md:mx-16 lg:mx-auto bg-base-100 rounded-xl shadow-xl my-16 md:my-20 lg:my-24 p-10 md:p-16 flex items-center flex-col-reverse md:flex-row md:gap-8 lg:gap-20">
@@ -45,7 +57,7 @@ const CreateAssignment = () => {
               type="text"
               placeholder="Title"
               className="outline-none text-sm md:text-base w-full"
-              onBlur={e => setTitle(e.target.value)}
+              onBlur={(e) => setTitle(e.target.value)}
               required
             />
           </div>
@@ -54,7 +66,7 @@ const CreateAssignment = () => {
               type="text"
               placeholder="Description"
               className="outline-none text-sm md:text-base w-full"
-              onBlur={e => setDescription(e.target.value)}
+              onBlur={(e) => setDescription(e.target.value)}
               required
             />
           </div>
@@ -63,7 +75,7 @@ const CreateAssignment = () => {
               type="text"
               placeholder="Total Mark"
               className="outline-none text-sm md:text-base w-full"
-              onBlur={e => setMark(e.target.value)}
+              onBlur={(e) => setMark(e.target.value)}
               required
             />
           </div>
@@ -72,17 +84,21 @@ const CreateAssignment = () => {
               type="url"
               placeholder="Thumbnail URL"
               className="outline-none text-sm md:text-base w-full"
-              onBlur={e => setImgUrl(e.target.value)}
+              onBlur={(e) => setImgUrl(e.target.value)}
               required
             />
           </div>
           <div className="flex gap-2">
             <p className="font-medium pt-3">Difficulty Level:</p>
-          <select value={level} onChange={e => setLevel(e.target.value)} className="select w-full select-bordered mb-5 border-gray-400 focus:outline-none flex-1">
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard</option>
-          </select>
+            <select
+              value={level}
+              onChange={(e) => setLevel(e.target.value)}
+              className="select w-full select-bordered mb-5 border-gray-400 focus:outline-none flex-1"
+            >
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
           </div>
           <div className="mb-5">
             <span className="font-medium">Due Date: </span>

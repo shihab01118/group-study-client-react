@@ -18,7 +18,7 @@ const Faq = () => {
           <Accordions />
         </div>
         <div className="flex-1 md:w-3/4">
-          <Lottie animationData={faq_animation} loop={false} />
+          <Lottie animationData={faq_animation} loop={true} />
         </div>
       </div>
     </div>
