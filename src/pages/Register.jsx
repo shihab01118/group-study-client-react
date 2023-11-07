@@ -19,14 +19,14 @@ const Register = () => {
     e.preventDefault();
     
     // password validation
-    // if (
-    //   !/^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\-]).{6,}$/.test(password)
-    // ) {
-    //   toast.error(
-    //     "Password must contain 6 characters, one capital letter and a special character."
-    //   );
-    //   return;
-    // }
+    if (
+      !/^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\-]).{6,}$/.test(password)
+    ) {
+      toast.error(
+        "Password must contain 6 characters, one capital letter and a special character."
+      );
+      return;
+    }
 
     // create user
     createUser(email, password)

@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
 import SubmittedCard from "../components/SubmittedCard";
+import useAuth from "../hooks/useAuth";
 
 const Submitted = () => {
+  const {user} = useAuth();
   const status = "Pending";
   const {
     data: submittedAssignmnets,
@@ -12,7 +14,7 @@ const Submitted = () => {
     queryKey: ["submittedAssignmnets"],
     queryFn: async () => {
       const data = await fetch(
-        `http://localhost:5000/api/v1/user/submitted_assignments?status=${status}`
+        `http://localhost:5000/api/v1/user/submitted_assignments?status=${status}&email=${user?.email}`, { credentials: "include"}
       );
       return await data.json();
     },

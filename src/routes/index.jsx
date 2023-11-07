@@ -25,6 +25,7 @@ const routes = createBrowserRouter([
       {
         path: "assignments",
         element: <Assignments />,
+        loader: () => fetch("http://localhost:5000/api/v1/user/assignmentsCount")
       },
       {
         path: "create_assignment",

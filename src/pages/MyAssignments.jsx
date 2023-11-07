@@ -10,7 +10,8 @@ const MyAssignments = () => {
     queryKey: ["submittedAssignmnets"],
     queryFn: async () => {
       const data = await fetch(
-        `http://localhost:5000/api/v1/user/user_submitted_assignments/${user?.email}`
+        `http://localhost:5000/api/v1/user/user_submitted_assignments/${user?.email}`,
+        { credentials: "include" }
       );
       return await data.json();
     },
