@@ -31,7 +31,7 @@ const Submitted = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-8 md:mx-16 lg:mx-auto mt-10 mb-16 md:mb-20 lg:mb-24">
+    <div className="max-w-6xl mx-8 md:mx-16 lg:mx-auto mt-10 mb-16 md:mb-20 lg:mb-24 min-h-[calc(100vh-88px)]">
       <h2 className="text-2xl md:text-4xl text-center font-bold text-[#1A064E]">
         Submitted Assignmmets
       </h2>

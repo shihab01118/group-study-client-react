@@ -56,7 +56,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "my_assignments",
-        element: <MyAssignments />,
+        element: (
+          <PrivateRoute>
+            <MyAssignments />
+          </PrivateRoute>
+        ),
       },
       {
         path: "submitted",

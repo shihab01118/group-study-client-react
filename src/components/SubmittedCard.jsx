@@ -5,7 +5,9 @@ import { useState } from "react";
 
 const SubmittedCard = ({ assignment, refetch }) => {
   const [open, setOpen] = useState(false);
-
+  const [remark, setRemark] = useState("");
+  const [feedback, setFeedback] = useState("");
+ 
   const { _id, pdfUrl, note, title, imgUrl, mark, examineeName } =
     assignment || {};
 
@@ -23,10 +25,9 @@ const SubmittedCard = ({ assignment, refetch }) => {
   const handleClose = () => setOpen(false);
 
   const handleConfirm = () => {
+    const checkedAssignment = {remark, feedback, status: "Completed"}
     axios
-      .patch(`http://localhost:5000/api/v1/user/submitted_assignments/${_id}`, {
-        status: "completed",
-      })
+      .put(`http://localhost:5000/api/v1/user/submitted_assignments/${_id}`, checkedAssignment)
       .then((res) => {
         const data = res.data;
         if (data.modifiedCount > 0) {
@@ -83,6 +84,7 @@ const SubmittedCard = ({ assignment, refetch }) => {
                   <input
                     id="remark"
                     type="text"
+                    onBlur={e => setRemark(e.target.value)}
                     className="outline-none text-sm md:text-base border-b h-5 border-gray-400"
                     required
                   />
@@ -93,6 +95,7 @@ const SubmittedCard = ({ assignment, refetch }) => {
                   </label>
                   <textarea
                     id="feedback"
+                    onBlur={e => setFeedback(e.target.value)}
                     className="textarea mt-2 px-2 py-0 border-gray-400 rounded-lg w-full h-20 focus:outline-none"
                     required
                   ></textarea>
