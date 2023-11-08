@@ -1,9 +1,18 @@
 import PropTypes from "prop-types";
+import { motion } from "framer-motion";
 
 const UserAssignment = ({ assignment }) => {
   const { status, title, mark, feedback, remark } = assignment || {};
   return (
-    <div className="rounded-lg bg-base-100 shadow-xl">
+    <motion.div
+    initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.8,
+        delay: 0.5,
+        ease: [0, 0.71, 0.2, 1.01]
+      }}
+    className="rounded-lg bg-base-100 shadow-xl relative">
       <div className="card-body">
         <h2 className="card-title text-[#1A064E]">{title}</h2>
         <div className="font-medium">
@@ -23,7 +32,9 @@ const UserAssignment = ({ assignment }) => {
           </p>
         </div>
       </div>
-    </div>
+      
+      <svg className="absolute bottom-0 rounded-lg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#6440FA" fillOpacity="0.2" d="M0,192L60,202.7C120,213,240,235,360,218.7C480,203,600,149,720,128C840,107,960,117,1080,106.7C1200,96,1320,64,1380,48L1440,32L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </motion.div>
   );
 };
 

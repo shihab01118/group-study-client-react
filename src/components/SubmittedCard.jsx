@@ -2,6 +2,7 @@ import { Box, Modal } from "@mui/material";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const SubmittedCard = ({ assignment, refetch }) => {
   const [open, setOpen] = useState(false);
@@ -10,16 +11,6 @@ const SubmittedCard = ({ assignment, refetch }) => {
 
   const { _id, pdfUrl, note, title, imgUrl, mark, examineeName } =
     assignment || {};
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    maxWidth: 500,
-    bgcolor: "background.paper",
-    boxShadow: 24,
-  };
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -41,7 +32,16 @@ const SubmittedCard = ({ assignment, refetch }) => {
   };
 
   return (
-    <div className="card card-side bg-base-100 shadow-xl">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 1,
+        delay: 0.5,
+        ease: [0, 0.71, 0.2, 1.01],
+      }}
+      className="card card-side bg-base-100 shadow-xl"
+    >
       <figure className="w-2/5">
         <img src={imgUrl} alt={title} className="h-full" />
       </figure>
@@ -63,7 +63,7 @@ const SubmittedCard = ({ assignment, refetch }) => {
             Give Mark
           </button>
           <Modal open={open} onClose={handleClose}>
-            <Box sx={style} className="rounded-lg p-5">
+            <Box className="rounded-lg p-5 max-w-[400px] md:max-w-[500px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-xl">
               <h2 className="text-xl font-semibold text-[#1A064E] text-center">
                 Check Assignment
               </h2>
@@ -116,7 +116,7 @@ const SubmittedCard = ({ assignment, refetch }) => {
           </Modal>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

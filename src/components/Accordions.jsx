@@ -21,7 +21,7 @@ const Accordions = () => {
         <div
           data-aos="fade-up"
           className="collapse collapse-arrow bg-base-200"
-          key={item.id}
+          key={item._id}
         >
           <input type="radio" name="my-accordion-2" />
           <div className="collapse-title text-xl font-medium">

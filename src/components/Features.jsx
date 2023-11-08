@@ -23,7 +23,7 @@ const Features = () => {
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {features.map((feature) => (
-          <FeaturedCard key={feature.id} feature={feature}></FeaturedCard>
+          <FeaturedCard key={feature._id} feature={feature}></FeaturedCard>
         ))}
       </div>
     </div>
