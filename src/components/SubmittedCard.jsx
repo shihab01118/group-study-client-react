@@ -15,7 +15,8 @@ const SubmittedCard = ({ assignment, refetch }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleConfirm = () => {
+  const handleConfirm = (e) => {
+    e.preventDefault();
     const checkedAssignment = { remark, feedback, status: "Completed" };
     axios
       .put(
